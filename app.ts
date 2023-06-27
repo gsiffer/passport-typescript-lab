@@ -1,36 +1,18 @@
+/// <reference path="./types.d.ts" />
+
 import express from "express";
-// import './types' // it doesn't work
 import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
+import authRoute from "./routes/authRoute";
+import indexRoute from "./routes/indexRoute";
 import passportMiddleware from './middleware/passportMiddleware';
-
-
 
 const port = process.env.port || 8000;
 
 const app = express();
-
-declare global {
-  namespace Express {
-    interface User {
-      id: number;
-      name: string;
-      role: string
-    }
-  }
-}
-
-declare module 'express-session' {
-  interface SessionData {
-    messages: string[]; // Define the 'messages' property
-    passport: {
-      user: number; // Assuming the user ID is of number type
-    };
-  }
-}
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -48,13 +30,6 @@ app.use(
     },
   })
 );
-
-// app.use(flash());
-
-import authRoute from "./routes/authRoute";
-import indexRoute from "./routes/indexRoute";
-// import { ParamsDictionary } from "express-serve-static-core";
-// import { ParsedQs } from "qs";
 
 // Middleware for express
 app.use(express.json());

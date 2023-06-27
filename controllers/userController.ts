@@ -21,6 +21,18 @@ const getUserById = (id: any) => {
   return null;
 };
 
+const getExternalUser = (email: string) => {
+  const user = userModel.findExternalUser(email);
+  if (user) {
+    return user;
+  }
+  return null;
+}
+
+const addUser = (user: { id: number; name: string; email: string; password: string; role: string }) => {
+  if (user) userModel.addUser(user)
+}
+
 function isUserValid(user: any, password: string) {
   if (user.password !== password) {
     throw new Error("Password is incorrect");
@@ -31,5 +43,5 @@ function isUserValid(user: any, password: string) {
 
 export {
   getUserByEmailIdAndPassword,
-  getUserById,
+  getUserById, getExternalUser, addUser
 };

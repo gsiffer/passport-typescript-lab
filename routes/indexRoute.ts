@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 import { ensureAdminRole } from "../middleware/checkRole";
-
+import { getUserById } from "../controllers/userController";
 import { MemoryStore } from 'express-session';
 
 router.get("/", (req, res) => {
@@ -38,10 +38,10 @@ router.get("/admin", ensureAuthenticated, ensureAdminRole, (req, res) => {
 
     Object.keys(sessions).forEach(sessionCode => {
       if (sessionCode.length > 0) {
-
-        const user = sessions[sessionCode]?.passport?.user;
-        if (user) {
-          array.push({ sessionCode, user });
+        const userID = sessions[sessionCode]?.passport?.user;
+        if (userID) {
+          const userName = getUserById(userID)?.name;
+          array.push({ sessionCode, userID, userName });
         }
       }
     });

@@ -1,8 +1,8 @@
 import { Strategy as GitHubStrategy } from 'passport-github2';
 import { PassportStrategy } from '../../interfaces/index';
-import { userModel } from '../../models/userModel';
 import { Request } from "express";
 import { GitHubProfile } from "../../interfaces/gitHubProfile"
+import { getExternalUser, addUser } from "../../controllers/userController";
 
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
@@ -18,8 +18,8 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
         try {
             if (profile) {
                 const user = { id: Number(profile.id), name: profile.displayName, email: profile.emails[0].value, password: "", role: "user" }
-                if (!userModel.findExternalUser(user.email)) {
-                    userModel.addUser(user)
+                if (!getExternalUser(user.email)) {
+                    addUser(user)
                 }
                 done(null, user)
             } else {

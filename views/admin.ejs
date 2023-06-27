@@ -10,8 +10,11 @@
   <p style="margin: 0; font-weight: 600; font-size: 15px">
     SessionID: <%= item.sessionCode %>
   </p>
+  <p style="margin: 0px; font-weight: 600; font-size: 15px">
+    UserID: <%= item.userID %>
+  </p>
   <p style="margin-bottom: 5px; font-weight: 600; font-size: 15px">
-    UserID: <%= item.user %>
+    User Name: <%= item.userName %>
   </p>
   <form method="POST" action="/revoke-session">
     <input type="hidden" name="sessionCode" value="<%= item.sessionCode %>" />
