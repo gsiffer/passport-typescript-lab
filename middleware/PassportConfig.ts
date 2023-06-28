@@ -7,7 +7,7 @@ export default class PassportConfig {
     constructor(strategies: PassportStrategy[]) {
         this.addStrategies(strategies);
     }
-    
+
     /*
      FIX ME 😭
      The problem with this class is... if the caller forgets to call

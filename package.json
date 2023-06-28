@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn app.ts"
+    "start": "ts-node-dev --respawn app.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

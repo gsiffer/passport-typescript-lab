@@ -7,7 +7,8 @@ const router = express.Router();
 router.get("/login", forwardAuthenticated, (req, res) => {
   // console.log(req.session)
   const messages = req.session.messages || [];
-  req.session.messages = [];
+  delete req.session.messages;
+  // req.session.messages = [];
   res.render("login", { messages });
 })
 
