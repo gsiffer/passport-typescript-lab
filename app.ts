@@ -54,6 +54,10 @@ passportMiddleware(app);
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
 
+app.use((req, res) => {
+  res.status(404).send('<h2>Page not found - 404</h2>');
+});
+
 app.listen(port, () => {
   console.log(`🚀 Server has started on port ${port}`);
 });

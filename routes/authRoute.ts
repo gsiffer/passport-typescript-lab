@@ -41,4 +41,12 @@ router.get("/logout", (req, res) => {
   res.redirect("/auth/login");
 });
 
+router.get("/register", (req, res) => {
+  res.send("<h2>Register</h2>")
+})
+
+router.get("/forgot", (req, res) => {
+  res.send("<h2>Reset</h2>")
+})
+
 export default router;
