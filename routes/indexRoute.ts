@@ -6,7 +6,7 @@ import { getUserById } from "../controllers/userController";
 import { MemoryStore } from 'express-session';
 
 router.get("/", (req, res) => {
-  res.send('<h3>Welcome</h3><a href="/auth/login" alt="">Login</a>');
+  res.send('<div style="text-align:center; margin-top: 50px"><h1>Welcome</h1><a style="font-size: 30px" href="/auth/login" alt="">Login</a></div>');
 });
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
